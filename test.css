@@ -1,0 +1,188 @@
+:root {
+  --block-size: 20px;
+  --margin-size: calc(0.2 * var(--block-size));
+  --snake-size: calc(var(--block-size) - 2 * var(--margin-size));
+  --dark-grey: #36393f;
+  --light-grey: #40444b;
+  --lighter-grey: #CCCCCC;
+  --cube-size: calc(2 * var(--block-size));
+  --cube-margin: calc(0.05 * var(--cube-size));
+}
+
+*, html {
+    margin:0;
+    padding:0;  
+}
+
+body {
+  background-color: var(--dark-grey);
+  font-family: 'Comfortaa', cursive;
+}
+
+.main_container {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.snake_container {
+  width: calc(var(--block-size) * 20);
+  height: calc(var(--block-size) * 20);
+  border: 3px solid var(--lighter-grey);
+  margin: var(--block-size);
+}
+
+.minor_container {
+  display: block;
+}
+
+.cube_container {
+  width: calc(var(--block-size) * 17);
+  height: calc(var(--block-size) * 17);
+  border: 3px solid var(--lighter-grey);
+  margin: var(--block-size);
+  margin-left: 0px;
+}
+
+
+#D3Cube {
+    width: calc(3 * var(--cube-size));
+    height: calc(3 * var(--cube-size));
+    top: calc(5 * var(--block-size));
+    -webkit-transform: rotateX(-35deg) rotateY(-45deg) rotateZ(0deg);
+    margin: auto;
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transition: all 0.0s ease-in-out;
+}
+
+#D3Cube > div {
+    margin: var(--cube-margin);
+    position: absolute;
+    width: calc(var(--cube-size) - 2 * var(--cube-margin));
+    height: calc(var(--cube-size) - 2 * var(--cube-margin));
+    overflow: hidden;
+    border-radius: 10%
+}
+
+.grid {
+  display: grid;
+  grid-template-columns:  repeat(20, var(--block-size));
+  grid-template-rows: repeat(20, var(--block-size));
+  overflow: hidden;
+}
+
+.body {
+  background-color: #FFF;
+  height: var(--snake-size);
+  width: var(--snake-size);
+  position: relative;
+  top: var(--margin-size);
+  left: var(--margin-size);
+}
+
+.apple2 {
+  height: calc(var(--block-size) - 2px);
+  width: calc(var(--block-size) - 2px);
+  text-align: center;
+  line-height: calc(var(--block-size) - 2px);
+  color: #fff;
+  font-size: calc(var(--block-size) * 0.8);
+  border: 1px solid var(--dark-grey);  
+}
+
+.switch_container {
+  display: flex;
+  width: calc(var(--block-size) * 17);
+  height: calc(var(--block-size) * 2 - 6px);
+  border: 3px solid var(--lighter-grey);
+}
+
+.switch_label {
+  margin: auto;
+  margin-left: 0px;
+  color: var(--lighter-grey);
+  font-size: var(--snake-size); 
+}
+
+/* The switch - the box around the slider */
+.switch {
+  margin: calc(0.5 * var(--block-size) - 3px);
+  position: relative;
+  display: inline-block;
+  width: calc(var(--block-size) + var(--snake-size));
+  height: var(--block-size);
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ed4a50;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: var(--snake-size);
+  width: var(--snake-size);
+  left: var(--margin-size);
+  bottom: var(--margin-size);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #a1ed4a;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(var(--snake-size));
+  -ms-transform: translateX(var(--snake-size));
+  transform: translateX(var(--snake-size));
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: var(--block-size);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.splash_screen {
+  position: absolute;
+  width: calc(var(--block-size) * 20);
+  height: calc(var(--block-size) * 2);
+  top: calc(var(--block-size) * 10);
+  background-color: var(--dark-grey);
+  color: var(--lighter-grey);
+  border-top: 3px solid var(--lighter-grey);
+  border-bottom: 3px solid var(--lighter-grey);
+  font-size: var(--snake-size); 
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  z-index: 2;
+}
+
